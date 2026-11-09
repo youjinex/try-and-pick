@@ -215,6 +215,50 @@ button:active{opacity:.85}
   .phone{height:100%}
   .app{padding-top:env(safe-area-inset-top,0px)}
 }
+
+/* v3 motion & store-only */
+.rise{animation:rise .42s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hdr{transition:box-shadow .2s}.hdr.sc{box-shadow:0 6px 16px rgba(20,25,30,.07);position:relative;z-index:3}
+.opt,.chk,.pk button{transition:border-color .18s,background .18s,box-shadow .18s,transform .12s}
+.btn{transition:transform .12s,background .2s}
+.btn.loading{pointer-events:none}
+.spin{width:20px;height:20px;border-radius:50%;border:2.5px solid rgba(255,255,255,.35);border-top-color:#fff;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.ok.pop{animation:okpop .55s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes okpop{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+.draw{stroke-dasharray:40;stroke-dashoffset:40;animation:dr .4s .3s ease-out forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+.near{display:flex;align-items:center;gap:5px;margin-top:16px;font-size:12.5px;font-weight:700;color:#5D7140}
+.stores{padding-left:0;margin-top:8px}
+.stores .opt b{display:flex;align-items:baseline;gap:8px}.stores .opt b em{font-style:normal;font-size:12px;font-weight:700;color:var(--sub)}
+.stores .ex{font-size:11.5px;color:var(--mute);margin:2px 0 0}
+.prog{height:4px;border-radius:2px;background:#EEF0EA;margin-bottom:16px;overflow:hidden}.prog i{display:block;height:100%;background:var(--lime);border-radius:2px;transition:width .35s ease}
+.cartic{position:relative}
+.bdg{position:absolute;right:-3px;top:-1px;min-width:16px;height:16px;border-radius:8px;background:#F23F3F;color:#fff;font-size:10.5px;font-weight:800;display:flex;align-items:center;justify-content:center;padding:0 4px;font-style:normal}
+.bdg.pop{animation:bpop .4s cubic-bezier(.3,1.8,.5,1)}
+@keyframes bpop{0%{transform:scale(0)}100%{transform:scale(1)}}
+.cartic.bump svg{animation:bump .35s ease}
+@keyframes bump{40%{transform:scale(1.2)}}
+.fly{position:absolute;z-index:40;border-radius:12px;object-fit:contain;background:#fff;box-shadow:0 10px 24px rgba(0,0,0,.18);pointer-events:none}
+.ci{display:flex;align-items:center;gap:12px;margin-top:18px;border:1px solid #E8E9EB;border-radius:14px;padding:12px}
+.ci img{width:56px;height:56px;border-radius:10px;object-fit:contain;background:var(--soft);flex:none}
+.ci small{display:block;font-size:11.5px;color:var(--sub);font-weight:600}.ci b{display:block;font-size:14px;font-weight:800}.ci span{font-size:13px;font-weight:700}
+.ci em{margin-left:auto;font-style:normal;font-size:12px;font-weight:800;color:var(--lime-ink);background:var(--lime-soft);border-radius:6px;padding:4px 8px}
+.ticket.shine{position:relative;animation:tk .5s .5s cubic-bezier(.2,.8,.2,1) both}
+.ticket.shine::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%);transform:translateX(-120%);animation:sh 1.1s 1.1s ease-in-out forwards;pointer-events:none}
+@keyframes tk{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes sh{to{transform:translateX(120%)}}
+.ctab{display:flex;border-bottom:1px solid var(--line)}.ctab span{flex:1;text-align:center;font-size:14px;font-weight:600;color:var(--sub);padding:12px 0}.ctab span.on{color:var(--ink);font-weight:800;box-shadow:inset 0 -2px 0 var(--ink)}
+.cit{display:flex;gap:10px;align-items:flex-start}
+.cit .cb{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;margin-top:2px}
+.cit img{width:76px;height:76px;border-radius:10px;object-fit:contain;background:var(--soft);flex:none}
+.cx{flex:1;min-width:0}.cx small{font-size:12px;color:var(--sub);font-weight:600}.cx>b{display:block;font-size:14px;font-weight:700;line-height:1.35;margin-top:2px}.cx>span{display:block;font-size:12.5px;color:var(--sub);margin-top:4px}
+.cp{display:flex;gap:8px;align-items:baseline;margin-top:6px}.cp s{font-size:12.5px;color:var(--mute)}.cp b{font-size:16px;font-weight:800}
+.tot{margin:22px 0 0;border-top:8px solid var(--soft);padding-top:16px;display:grid;gap:10px;font-size:14px}
+.tot div{display:flex;justify-content:space-between}.tot dt{color:var(--sub)}.tot dd{margin:0;font-weight:700}.tot .m{color:#F23F3F}
+.tot .all{border-top:1px solid var(--line);padding-top:12px;font-size:16px}.tot .all dt{color:var(--ink);font-weight:800}.tot .all dd{font-size:18px;font-weight:800}
+@media (prefers-reduced-motion:reduce){.rise,.ok.pop,.ticket.shine,.ticket.shine::after,.draw,.bdg.pop{animation:none}.draw{stroke-dashoffset:0}}
 </style>
 </head>
 <body>
@@ -231,9 +275,9 @@ const IMG={DEWY:'data:image/webp;base64,UklGRnZdAABXRUJQVlA4WAoAAAAQAAAAowEAowEA
 const P={A:{key:'A',brand:'브랜드 A',name:'글로우 쿠션',full:'글로우 쿠션 15g 단품기획 (본품+리필)',price:28000,orig:35000,img:IMG.DEWY,rate:'4.8',rev:'1,204',vol:'15g',per:'1,867원',finish:'촉촉한 광',fit:'건조한 피부'},
          B:{key:'B',brand:'브랜드 B',name:'매트 쿠션',full:'매트 쿠션 14g 기획 (본품+퍼프)',price:32000,orig:38000,img:IMG.MATTE,rate:'4.7',rev:'986',vol:'14g',per:'2,286원',finish:'보송한 매트',fit:'유분이 많은 피부'}};
 const SHADES=['13호','17호','21호','23호'];
-const STORES=[{id:'gangnam',n:'강남역 매장',s:'픽업 선반 1층 계산대 옆'},{id:'seongsu',n:'성수 매장',s:'픽업 선반 2층 엘리베이터 앞'},{id:'gwanghwamun',n:'광화문 매장',s:'픽업 선반 1층 입구 쪽'}];
-const STEPS=[['detail','상세'],['concern','고민'],['compare','비교'],['apply','신청'],['done','받기'],['pick','고르기'],['coupon','쿠폰']];
-const init=()=>({screen:'detail',product:'A',concern:null,shadeA:'21호',shadeB:'21호',method:'ship',store:'gangnam',pick:null,reasons:[],coupon:null});
+const STORES=[{id:'gangnam',n:'강남역 매장',d:'350m',s:'픽업 선반 1층 계산대 옆'},{id:'seongsu',n:'성수 매장',d:'4.1km',s:'픽업 선반 2층 엘리베이터 앞'},{id:'gwanghwamun',n:'광화문 매장',d:'8.7km',s:'픽업 선반 1층 입구 쪽'}];
+const STEPS=[['detail','상세'],['concern','고민'],['compare','비교'],['apply','신청'],['done','매장 수령'],['pick','1분 설문'],['coupon','장바구니 담기'],['cart','장바구니']];
+const init=()=>({screen:'detail',product:'A',concern:null,shadeA:'21호',shadeB:'21호',store:'gangnam',pick:null,reasons:[],coupon:null,cart:0,flown:false});
 let S=init();
 const app=document.getElementById('app');
 const won=n=>n.toLocaleString('ko-KR')+'원';
@@ -246,6 +290,8 @@ const ic={
  share:'<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 13V3M6 7l4-4 4 4M4 11v6h12v-6" stroke="#131518" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>',
  gift:'<svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><rect x="3" y="8" width="16" height="11" rx="1.5" stroke="#131518" stroke-width="1.7" fill="none"/><path d="M2 8h18M11 8v11M11 8c-2-4-6-4-6-1s6 1 6 1c2-4 6-4 6-1s-6 1-6 1" stroke="#131518" stroke-width="1.7" fill="none"/></svg>',
  ticket:'<svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 4h12v2.5a1.5 1.5 0 000 3V12H2V9.5a1.5 1.5 0 000-3z" fill="#9CC734"/></svg>',
+ pin:'<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 13s4.5-4.2 4.5-7.3A4.5 4.5 0 002.5 5.7C2.5 8.8 7 13 7 13z" fill="none" stroke="#5D7140" stroke-width="1.5"/><circle cx="7" cy="5.8" r="1.6" fill="#5D7140"/></svg>',
+ checkd:'<svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path class="draw" d="M8 17.5l6 6 12-13" fill="none" stroke="#131518" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
  check:'<svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><path d="M8 17.5l6 6 12-13" fill="none" stroke="#131518" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 };
 const sb='<div class="sb"><span>9:41</span><span class="ic"><i style="width:4px;height:6px"></i><i style="width:4px;height:9px"></i><i style="width:4px;height:12px"></i><i style="width:24px;height:12px;border-radius:4px;margin-left:6px"></i></span></div>';
@@ -253,27 +299,27 @@ const hdr=(title,back,right='',line=true)=>`<div class="hdr ${line?'line':''}" s
 
 function detail(){
   const p=P[S.product],c=S.coupon&&S.coupon.key===p.key;
-  return sb+hdr('', 'x-back', `<button class="iconbtn" data-toast="검색은 프로토타입에서 열려 있지 않아요" aria-label="검색">${ic.search}</button><button class="iconbtn" data-toast="홈은 프로토타입에서 열려 있지 않아요" aria-label="홈">${ic.home}</button><button class="iconbtn" data-toast="장바구니는 프로토타입에서 열려 있지 않아요" aria-label="장바구니">${ic.cart}</button>`,false)+
+  return sb+hdr('', 'x-back', `<button class="iconbtn" data-toast="검색은 프로토타입에서 열려 있지 않아요" aria-label="검색">${ic.search}</button><button class="iconbtn" data-toast="홈은 프로토타입에서 열려 있지 않아요" aria-label="홈">${ic.home}</button>${cartBtn()}`,false)+
   `<div class="body"><div class="gal"><img src="${p.img}" alt="${p.name}"><span class="idx">‹&nbsp; 1 | 5 &nbsp;›</span></div>
   <div class="sw"><button class="cb" data-toast="색상비교는 한 제품의 호수를 비교해요. 트라이앤픽은 다른 두 제품을 써보고 골라요">색상비교</button>${[1,1.06,.94,.86].map(b=>`<img src="${p.img}" alt="" style="filter:brightness(${b})">`).join('')}</div>
   <div class="pi"><div class="brand">${p.brand} ›<span style="display:flex;gap:12px">${ic.heart}${ic.share}</span></div>
   <div class="pname">${p.full}</div><div class="strike">${won(p.orig)}</div>
   <div class="price"><span class="dc">${Math.round((1-p.price/p.orig)*100)}%</span><b>${won(p.price)}</b></div>
-  ${c?`<div class="cpn">${ic.ticket}트라이앤픽 쿠폰 적용가 ${won(Math.round(p.price*0.85/100)*100)} · D-14</div>`:''}
+  ${c?`<div class="cpn">${ic.ticket}트라이앤픽 쿠폰 적용가 ${won(Math.round(p.price*0.85/100)*100)} · 2주 안에 사용</div>`:''}
   <div class="tags"><span class="td">오늘드림</span><span class="bs">BEST</span></div>
   <div class="rate">★ ${p.rate}<span>|</span>리뷰 ${p.rev}건</div><div class="view">312명이 보고 있어요</div></div>
-  ${c?`<button class="tpban" data-toast="쿠폰은 장바구니에서 자동으로 적용돼요"><div class="th"><img src="${p.img}" alt=""></div><div class="tx"><b>트라이앤픽으로 고른 제품이에요</b><span>고른 제품 본품 15% 쿠폰 · 수령일부터 14일</span></div><div class="go">›</div></button>`
+  ${c?`<button class="tpban" data-go="cart"><div class="th"><img src="${p.img}" alt=""></div><div class="tx"><b>써보고 고른 제품이 장바구니에 있어요</b><span>트라이앤픽 할인 쿠폰 15% · 2주 안에 사용</span></div><div class="go">›</div></button>`
      :`<button class="tpban" data-go="concern"><div class="th"><img src="${P.A.img}" alt=""><img src="${P.B.img}" alt=""></div><div class="tx"><b>이 쿠션 나한테 맞을까?</b><span>트라이앤픽 · 샘플 2종 무료로 써보기</span></div><div class="go">›</div></button>`}
   <dl class="rows"><div class="row"><dt>결제혜택</dt><dd>카드 즉시할인 최대 <b>3,000원</b></dd><i>›</i></div><div class="row"><dt>적립</dt><dd>포인트 최대 <b>1%</b> 적립 예상</dd><i>›</i></div><div class="row"><dt>일반배송</dt><dd>2,500원 (20,000원 이상 무료배송)<br>평균 3일 이내 도착</dd><i>›</i></div><div class="row"><dt>오늘드림</dt><dd><b>지금 주문하면 오늘 도착 또는 매장 픽업</b></dd><i>›</i></div></dl>
   <div style="height:24px"></div></div>
-  <div class="bar"><button class="gift" data-toast="선물하기는 프로토타입에서 열려 있지 않아요">${ic.gift}선물</button><button class="btn line" data-toast="${c?'쿠폰이 적용된 가격으로 담겼어요':'프로토타입에서는 트라이앤픽 흐름만 열려 있어요'}">장바구니</button><button class="btn dark" data-toast="${c?'쿠폰 적용가로 결제 화면에 넘어가요 (예시)':'프로토타입에서는 트라이앤픽 흐름만 열려 있어요'}">바로구매</button></div>`;
+  <div class="bar"><button class="gift" data-toast="선물하기는 프로토타입에서 열려 있지 않아요">${ic.gift}선물</button><button class="btn line" ${c?'data-go="cart"':'data-toast="프로토타입에서는 트라이앤픽 흐름만 열려 있어요"'}>장바구니</button><button class="btn dark" data-toast="${c?'쿠폰 적용가로 결제 화면에 넘어가요 (예시)':'프로토타입에서는 트라이앤픽 흐름만 열려 있어요'}">바로구매</button></div>`;
 }
 function concern(){
   const O=[{id:'lift',t:'오후만 되면 쿠션이 들떠요',s:'2주차 고민 · 11/15(일)까지',open:true},{id:'sticky',t:'보습제가 너무 끈적여요',s:'1주차 고민 · 마감',open:false},{id:'next',t:'다음 주 고민 준비 중',s:'3주차 · 11/16(월) 오픈',open:false}];
   return sb+hdr('트라이앤픽','detail')+`<div class="body"><div class="hero"><div class="eyb">Try &amp; Pick · 이번 주 열린 고민</div><h1 class="h1">어떤 변화를 원하세요?</h1><p class="lead" style="margin-bottom:0">고르신 고민에 맞춰 두 제품을 골라드려요</p></div>
   <div class="pad" style="padding-top:6px"><div class="opts" role="radiogroup" aria-label="고민 선택">${O.map(o=>`<button class="opt ${o.open?'':'off'} ${S.concern===o.id?'on':''}" ${o.open?`data-concern="${o.id}" role="radio" aria-checked="${S.concern===o.id}"`:'aria-disabled="true" data-toast="지금은 열려 있지 않은 고민이에요"'}><span class="rd"></span><span class="ot"><b>${o.t}</b><span>${o.s}</span></span></button>`).join('')}</div>
-  <div class="kit"><img src="${IMG.KIT}" alt="샘플 키트"><div><small>받는 샘플</small><b>쿠션 파우치 2종 + 1회용 퍼프 · 무료</b></div></div>
-  <ul class="fine"><li>같은 고민은 1인 1회 받을 수 있어요</li><li>후기는 쓰지 않아도 돼요</li></ul></div></div>
+  <div class="kit"><img src="${IMG.KIT}" alt="샘플 키트"><div><small>받는 샘플 · 무료</small><b>쿠션 파우치 2종 + 1회용 퍼프</b></div></div>
+  <ul class="fine"><li>같은 고민은 1인 1회 받을 수 있어요</li><li>샘플은 가까운 매장 픽업 선반에서 받아요</li></ul></div></div>
   <div class="bar"><button class="btn dark" data-go="compare" ${S.concern?'':'disabled'}>두 후보 보기</button></div>`;
 }
 function card(p,k){return `<div class="pc"><div class="im"><img src="${p.img}" alt="${p.name}"></div><div class="bn">${p.brand}</div><div class="nm">${p.name}</div><div class="pr">${won(p.price)}</div><div class="rt">★ ${p.rate} (${p.rev})</div><label for="shade${k}">호수</label><select id="shade${k}" data-shade="${k}">${SHADES.map(s=>`<option ${S['shade'+k]===s?'selected':''}>${s}</option>`).join('')}</select></div>`}
@@ -281,70 +327,94 @@ function compare(){
   return sb+hdr('트라이앤픽','concern')+`<div class="body"><div class="pad"><div class="eyb">2주차 고민</div><h1 class="h1">오후에 들뜨는 쿠션<br>둘 중 뭐가 맞을까?</h1><p class="lead">제형도 가격대도 다른 두 후보예요</p>
   <div class="pair">${card(P.A,'A')}${card(P.B,'B')}</div>
   <table class="cmp"><tr><th>용량</th><td>${P.A.vol}</td><td>${P.B.vol}</td></tr><tr><th>1g당</th><td>${P.A.per}</td><td>${P.B.per}</td></tr><tr><th>마무리</th><td>${P.A.finish}</td><td>${P.B.finish}</td></tr><tr><th>이런 분께</th><td>${P.A.fit}</td><td>${P.B.fit}</td></tr></table>
-  <div class="tip"><b>써보며 확인할 것</b>아침에 바르고 오후 3시에 들뜸 보기</div></div></div>
+  <div class="tip"><b>써보는 방법</b>하루에 하나씩 얼굴에 바르고 오후 3시에 들뜸 보기</div></div></div>
   <div class="bar"><button class="btn dark" data-go="apply">샘플 2종 무료로 받기</button></div>`;
 }
 function apply(){
-  return sb+hdr('받는 방법','compare')+`<div class="body"><div class="pad"><h1 class="h1" style="margin-top:0">어떻게 받을까요?</h1>
-  <div class="sel" role="radiogroup" aria-label="받는 방법"><button class="opt ${S.method==='ship'?'on':''}" data-method="ship" role="radio" aria-checked="${S.method==='ship'}"><span class="rd"></span><span class="ot"><b>주문할 때 함께 받기</b><span>오늘 주문하는 상품에 같이 넣어 보내드려요</span></span></button>
-  <button class="opt ${S.method==='store'?'on':''}" data-method="store" role="radio" aria-checked="${S.method==='store'}"><span class="rd"></span><span class="ot"><b>매장에서 받기</b><span>오늘드림 픽업 선반에서 바로 받아요</span></span></button></div>
-  ${S.method==='store'?`<div class="stores" role="radiogroup" aria-label="매장 선택">${STORES.map(s=>`<button class="opt ${S.store===s.id?'on':''}" data-store="${s.id}" role="radio" aria-checked="${S.store===s.id}" style="padding:11px 12px"><span class="rd" style="width:18px;height:18px"></span><span class="ot"><b style="font-size:14px">${s.n}</b><span>${s.s}</span></span></button>`).join('')}<p style="font-size:11.5px;color:var(--mute);margin:2px 0 0">매장 이름과 위치는 예시예요</p></div>`:''}
-  <dl class="sum"><dt>받는 샘플</dt><dd>${P.A.name} ${S.shadeA} · ${P.B.name} ${S.shadeB} · 1회용 퍼프 2개</dd><dt>쿠폰</dt><dd>써보고 고른 제품 본품 15% · 수령일부터 14일</dd></dl>
-  <ul class="fine"><li>같은 고민은 1인 1회 받을 수 있어요</li><li>후기는 쓰지 않아도 혜택을 드려요</li></ul></div></div>
-  <div class="bar"><button class="btn dark" data-go="done">신청하기</button></div>`;
+  return sb+hdr('샘플 신청','compare')+`<div class="body"><div class="pad"><h1 class="h1" style="margin-top:0">어느 매장에서 받을까요?</h1><p class="lead">오늘드림 픽업 선반에서 받아요. 배송은 하지 않아요</p>
+  <div class="near">${ic.pin}내 위치에서 가까운 순</div>
+  <div class="stores" role="radiogroup" aria-label="매장 선택">${STORES.map(s=>`<button class="opt ${S.store===s.id?'on':''}" data-store="${s.id}" role="radio" aria-checked="${S.store===s.id}"><span class="rd"></span><span class="ot"><b>${s.n}<em>${s.d}</em></b><span>${s.s}</span></span></button>`).join('')}<p class="ex">매장 이름과 위치는 예시예요</p></div>
+  <dl class="sum"><dt>받는 샘플</dt><dd>${P.A.name} ${S.shadeA} · ${P.B.name} ${S.shadeB} · 1회용 퍼프 2개</dd><dt>수령 기간</dt><dd>신청한 날부터 7일 안에 매장에서</dd><dt>써본 뒤</dt><dd>1분 사용 설문으로 고르면 장바구니에 자동으로 담기고<br>2주 안에 쓰는 할인 쿠폰을 드려요</dd></dl>
+  <ul class="fine"><li>같은 고민은 1인 1회 받을 수 있어요</li><li>매장 진열대 QR로 들어와도 같은 화면이에요</li></ul></div></div>
+  <div class="bar"><button class="btn dark" data-load="done">신청하기</button></div>`;
 }
 function done(){
   const st=STORES.find(s=>s.id===S.store);
-  return sb+hdr('신청 완료','')+`<div class="body"><div class="pad done"><div class="ok">${ic.check}</div><h1 class="h1">신청이 완료됐어요</h1><p class="lead">${S.method==='ship'?'주문 상품과 함께 보내드려요':`${st.n}에서 받아가세요`}</p>
-  ${S.method==='store'?`<div class="qrc"><canvas id="qr" width="25" height="25" aria-label="수령 QR 예시"></canvas><div><small>수령 번호</small><b>TP-0213</b><p>셀프 계산대에서 QR을 찍으면 픽업 선반 위치를 알려드려요</p></div></div>`:`<div class="qrc"><img src="${IMG.KIT}" alt="" style="width:72px;height:72px;border-radius:12px;object-fit:cover;flex:none"><div><small>도착 예정</small><b>11/12(목)</b><p>쿠션 파우치 2종과 1회용 퍼프가 함께 가요</p></div></div>`}
-  <ol class="tl"><li class="on"><i></i><div><b>받기</b><br><span>${S.method==='ship'?'주문 상품과 함께 도착':'매장 픽업 선반에서 수령'}</span></div><span>오늘</span></li><li><i></i><div><b>써보기</b><br><span>손등에 나란히, 오후에 한 번 더</span></div><span>3일</span></li><li><i></i><div><b>고르기</b><br><span>알림이 오면 더 맞은 쪽 한 번 탭</span></div><span>알림</span></li><li><i></i><div><b>쿠폰</b><br><span>고른 제품 본품 15%</span></div><span>14일</span></li></ol>
-  <button class="skip" id="skip">3일 뒤로 넘겨보기 (프로토타입)</button></div></div>
+  return sb+hdr('신청 완료','')+`<div class="body"><div class="pad done"><div class="ok pop">${ic.checkd}</div><h1 class="h1">신청이 완료됐어요</h1><p class="lead">${st.n} 픽업 선반에서 받아가세요</p>
+  <div class="qrc"><canvas id="qr" width="25" height="25" aria-label="수령 QR 예시"></canvas><div><small>수령 번호</small><b>TP-0213</b><p>${st.s}<br>준비되면 알림을 보내드려요</p></div></div>
+  <ol class="tl"><li class="on"><i></i><div><b>받기</b><br><span>매장 픽업 선반에서 수령</span></div><span>오늘</span></li><li><i></i><div><b>써보기</b><br><span>1일차 A, 2일차 B 하루에 하나씩 얼굴에</span></div><span>2일</span></li><li><i></i><div><b>고르기</b><br><span>1분 사용 설문으로 더 맞은 제품 선택</span></div><span>1분</span></li><li><i></i><div><b>구매로</b><br><span>장바구니 자동 담기 + 할인 쿠폰</span></div><span>2주</span></li></ol>
+  <button class="skip" id="skip">이틀 써본 뒤로 넘겨보기 (프로토타입)</button></div></div>
   <div class="bar"><button class="btn line" data-go="detail">상품으로 돌아가기</button></div>`;
 }
 function pick(){
   const R=['오후에도 덜 들떠요','피부 표현이 자연스러워요','커버가 더 잘 돼요','바르는 느낌이 좋아요'];
-  return sb+hdr('트라이앤픽','done')+`<div class="body"><div class="pad"><div class="eyb">3일 써보셨네요</div><h1 class="h1">어떤 쿠션이 더 잘 맞았나요?</h1><p class="lead">오후까지 써본 느낌으로 골라주세요</p>
-  <div class="pk" role="radiogroup" aria-label="더 맞은 제품">${['A','B'].map(k=>`<button class="${S.pick===k?'on':''}" data-pick="${k}" role="radio" aria-checked="${S.pick===k}"><div class="im"><img src="${P[k].img}" alt=""></div><b>${k} ${P[k].name}</b><span>${S['shade'+k]} · ${P[k].finish}</span></button>`).join('')}</div>
-  <div class="rs"><h3>어떤 점이 좋았나요?<span>선택</span></h3>${R.map((r,i)=>`<button class="chk ${S.reasons.includes(i)?'on':''}" data-reason="${i}" role="checkbox" aria-checked="${S.reasons.includes(i)}"><i>✓</i>${r}</button>`).join('')}</div>
+  return sb+hdr('1분 사용 설문','done')+`<div class="body"><div class="pad"><div class="prog"><i style="width:${S.pick?(S.reasons.length?100:66):33}%"></i></div><div class="eyb">이틀 써보셨네요</div><h1 class="h1">어떤 쿠션이 더 잘 맞았나요?</h1><p class="lead">하루씩 써본 느낌으로 골라주세요</p>
+  <div class="pk" role="radiogroup" aria-label="더 맞은 제품">${['A','B'].map(k=>`<button class="${S.pick===k?'on':''}" data-pick="${k}" role="radio" aria-checked="${S.pick===k}"><div class="im"><img src="${P[k].img}" alt=""></div><b>${k} ${P[k].name}</b><span>${k==='A'?'1일차':'2일차'} · ${S['shade'+k]}</span></button>`).join('')}</div>
+  <div class="rs"><h3>어떤 점이 좋았나요?<span>여러 개 선택</span></h3>${R.map((r,i)=>`<button class="chk ${S.reasons.includes(i)?'on':''}" data-reason="${i}" role="checkbox" aria-checked="${S.reasons.includes(i)}"><i>✓</i>${r}</button>`).join('')}</div>
   <button class="none" data-go="none">둘 다 잘 맞지 않았어요</button></div></div>
-  <div class="bar"><button class="btn dark" data-go="coupon" ${S.pick?'':'disabled'}>이 제품으로 고르기</button></div>`;
+  <div class="bar"><button class="btn dark" data-load="coupon" ${S.pick?'':'disabled'}>설문 제출하고 고르기</button></div>`;
 }
 function coupon(){
   const p=P[S.pick];
-  return sb+hdr('트라이앤픽','')+`<div class="body"><div class="pad"><div class="eyb">고르기 완료</div><h1 class="h1">${p.name}을 고르셨어요</h1><p class="lead">고른 제품 본품에 쓸 수 있는 쿠폰이 열렸어요</p>
-  <div class="ticket"><div class="l"><small>Try &amp; Pick 쿠폰</small><b>15%</b><span>${p.brand} ${p.name} 본품 · ${S['shade'+p.key]}</span></div><div class="r"><small>남은 기간</small><b>D-14</b></div></div>
-  <p class="anon">고른 이유는 이름 없이 브랜드에 전달돼 제품을 고치는 데 쓰여요</p>
-  <button class="xsell" data-toast="다음 단계 아이디어: 고른 쿠션과 잘 맞는 기초를 브랜드 상관없이 추천"><div><b>이 쿠션과 잘 맞는 기초 보기</b><span>함께 산 고객이 많은 보습제</span></div><span class="go">›</span></button><button class="again" data-restart="1">처음부터 다시 보기</button></div></div>
-  <div class="bar"><button class="btn dark" id="toProduct">본품 보러가기</button></div>`;
+  return sb+hdr('트라이앤픽','',cartBtn())+`<div class="body"><div class="pad"><div class="eyb">설문 완료</div><h1 class="h1">${p.name}을<br>장바구니에 담았어요</h1><p class="lead">2주 안에 쓸 수 있는 할인 쿠폰도 함께 드려요</p>
+  <div class="ci"><img src="${p.img}" alt=""><div><small>${p.brand}</small><b>${p.name} · ${S['shade'+p.key]}</b><span>${won(p.price)}</span></div><em>담김</em></div>
+  <div class="ticket shine"><div class="l"><small>Try &amp; Pick 할인 쿠폰</small><b>15%</b><span>${p.name} 본품 · 장바구니에서 자동 적용</span></div><div class="r"><small>사용 기간</small><b>2주</b></div></div>
+  <p class="anon">설문 응답은 이름 없이 브랜드에 전달돼 제품 개선에 쓰여요</p>
+  <button class="xsell" data-toast="다음 단계 아이디어: 고른 쿠션과 잘 맞는 기초를 브랜드 상관없이 추천"><div><b>이 쿠션과 잘 맞는 기초 보기</b><span>함께 산 고객이 많은 보습제</span></div><span class="go">›</span></button></div></div>
+  <div class="bar"><button class="btn dark" data-go="cart">장바구니 보기</button></div>`;
+}
+function cart(){
+  const p=P[S.pick||'A'],dc=Math.round(p.price*0.15/100)*100,pay=p.price-dc;
+  return sb+hdr('장바구니','coupon')+`<div class="body"><div class="ctab"><span class="on">일반배송 1</span><span>오늘드림 0</span><span>픽업 0</span></div><div class="pad">
+  <div class="cit"><span class="cb on">✓</span><img src="${p.img}" alt=""><div class="cx"><small>${p.brand}</small><b>${p.full}</b><span>옵션 ${S['shade'+p.key]} · 1개</span><div class="cp"><s>${won(p.price)}</s><b>${won(pay)}</b></div><div class="cpn">${ic.ticket}트라이앤픽 쿠폰 15% 적용 · 2주 남음</div></div></div>
+  <dl class="tot"><div><dt>상품금액</dt><dd>${won(p.price)}</dd></div><div><dt>쿠폰할인</dt><dd class="m">-${won(dc)}</dd></div><div><dt>배송비</dt><dd>0원</dd></div><div class="all"><dt>결제예정금액</dt><dd>${won(pay)}</dd></div></dl>
+  <button class="again" data-restart="1">처음부터 다시 보기</button></div></div>
+  <div class="bar"><button class="btn dark" data-toast="결제는 프로토타입에서 열려 있지 않아요">${won(pay)} 구매하기</button></div>`;
 }
 function none(){
-  return sb+hdr('트라이앤픽','pick')+`<div class="body"><div class="pad done"><div class="ok" style="background:#EEF0EA">${ic.check}</div><h1 class="h1">알려주셔서 고마워요</h1><p class="lead">다음 주에는 다른 고민의 두 제품을 준비할게요<br>안 맞은 이유는 브랜드에 전달돼요</p><button class="again" data-restart="1">처음부터 다시 보기</button></div></div>
+  return sb+hdr('트라이앤픽','pick')+`<div class="body"><div class="pad done"><div class="ok pop" style="background:#EEF0EA">${ic.checkd}</div><h1 class="h1">알려주셔서 고마워요</h1><p class="lead">다음 주에는 다른 고민의 두 제품을 준비할게요<br>안 맞은 이유는 브랜드에 전달돼요</p><button class="again" data-restart="1">처음부터 다시 보기</button></div></div>
   <div class="bar"><button class="btn dark" data-go="detail">상품으로 돌아가기</button></div>`;
 }
-const VIEWS={detail,concern,compare,apply,done,pick,coupon,none};
+function cartBtn(){return `<button class="iconbtn cartic" ${S.cart?'data-go="cart"':'data-toast="장바구니가 비어 있어요"'} aria-label="장바구니">${ic.cart}${S.cart?`<span class="bdg">${S.cart}</span>`:''}</button>`}
+const VIEWS={detail,concern,compare,apply,done,pick,coupon,cart,none};
 function drawQR(){const c=document.getElementById('qr');if(!c)return;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,25,25);let s=213;const r=()=>(s=(s*9301+49297)%233280)/233280;x.fillStyle='#131518';for(let i=0;i<25;i++)for(let j=0;j<25;j++)if(r()>.52)x.fillRect(i,j,1,1);[[0,0],[18,0],[0,18]].forEach(([a,b])=>{x.fillStyle='#fff';x.fillRect(a,b,7,7);x.fillStyle='#131518';x.fillRect(a,b,7,7);x.fillStyle='#fff';x.fillRect(a+1,b+1,5,5);x.fillStyle='#131518';x.fillRect(a+2,b+2,3,3)})}
-let prevIdx=0;const ORDER=['detail','concern','compare','apply','done','pick','coupon','none'];
+const RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+let prevIdx=0,prevScreen=null;const ORDER=['detail','concern','compare','apply','done','pick','coupon','cart','none'];
 function render(){
-  const ni=ORDER.indexOf(S.screen);app.classList.remove('anim','back');void app.offsetWidth;app.classList.add('anim');if(ni<prevIdx)app.classList.add('back');prevIdx=ni;
-  app.innerHTML=VIEWS[S.screen]()+'<div class="scrim" id="scrim"></div><button class="push" id="push" aria-label="알림 열기"><span class="ico"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 8h12l-1 11H6z" fill="none" stroke="#C6E05A" stroke-width="2" stroke-linejoin="round"/><path d="M8 8a3 3 0 016 0" fill="none" stroke="#C6E05A" stroke-width="2"/></svg></span><span style="flex:1;min-width:0"><span class="a">트라이앤픽<span>지금</span></span><span class="b" style="display:block">써보신 두 쿠션, 어느 쪽이 더 잘 맞았나요?</span></span></button><div class="toast" id="toast" role="status"></div>';
-  const b=app.querySelector('.body'); if(b) b.scrollTop=0;
+  const same=S.screen===prevScreen,ob=app.querySelector('.body'),keep=same&&ob?ob.scrollTop:0;
+  const ni=ORDER.indexOf(S.screen);app.classList.remove('anim','back');
+  if(!same){void app.offsetWidth;app.classList.add('anim');if(ni<prevIdx)app.classList.add('back')}
+  prevIdx=ni;prevScreen=S.screen;
+  app.innerHTML=VIEWS[S.screen]()+'<div class="scrim" id="scrim"></div><button class="push" id="push" aria-label="알림 열기"><span class="ico"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 8h12l-1 11H6z" fill="none" stroke="#C6E05A" stroke-width="2" stroke-linejoin="round"/><path d="M8 8a3 3 0 016 0" fill="none" stroke="#C6E05A" stroke-width="2"/></svg></span><span style="flex:1;min-width:0"><span class="a">트라이앤픽<span>지금</span></span><span class="b" style="display:block">이틀 써보신 두 쿠션, 1분 설문으로 골라주세요</span></span></button><div class="toast" id="toast" role="status"></div>';
+  const b=app.querySelector('.body'),h=app.querySelector('.hdr');
+  if(b){b.scrollTop=keep;b.addEventListener('scroll',()=>h&&h.classList.toggle('sc',b.scrollTop>4),{passive:true});
+    if(!same&&!RM){[...b.querySelectorAll('.pad > *, .hero > *, .opts > *, .stores > *, .tl > li')].slice(0,18).forEach((el,i)=>{el.classList.add('rise');el.style.animationDelay=(60+i*35)+'ms'})}}
   drawQR();
+  if(!same&&S.screen==='coupon'&&!S.flown){S.flown=true;flyToCart()}
   const idx=STEPS.findIndex(s=>s[0]===S.screen);
   document.getElementById('steps').innerHTML=STEPS.map((s,i)=>`<span class="${i===idx?'on':''}">${s[1]}</span>`).join('<i>›</i>');
   try{localStorage.setItem('tp-proto',JSON.stringify(S))}catch(e){}
 }
+function flyToCart(){
+  const ci=app.querySelector('.ci img'),ic2=app.querySelector('.cartic'),bd=app.querySelector('.bdg');
+  if(bd)bd.style.visibility='hidden';
+  if(!ci||!ic2||RM||!app.animate){if(bd)bd.style.visibility='';return}
+  const ar=app.getBoundingClientRect(),a=ci.getBoundingClientRect(),c=ic2.getBoundingClientRect();
+  const f=ci.cloneNode();f.className='fly';f.style.left=(a.left-ar.left)+'px';f.style.top=(a.top-ar.top)+'px';f.style.width=a.width+'px';f.style.height=a.height+'px';app.appendChild(f);
+  const dx=c.left+c.width/2-(a.left+a.width/2),dy=c.top+c.height/2-(a.top+a.height/2);
+  f.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${dx*.55}px,${dy*.55-50}px) scale(.6)`,opacity:1,offset:.6},{transform:`translate(${dx}px,${dy}px) scale(.18)`,opacity:.3}],{duration:720,delay:420,easing:'cubic-bezier(.5,0,.3,1)',fill:'forwards'}).onfinish=()=>{f.remove();if(bd){bd.style.visibility='';bd.classList.add('pop')}ic2.classList.add('bump');try{navigator.vibrate&&navigator.vibrate(18)}catch(e){}};
+}
 let tt;function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200)}
 app.addEventListener('click',e=>{
-  const el=e.target.closest('button');if(!el||el.disabled)return;
+  const el=e.target.closest('button');if(!el||el.disabled||el.classList.contains('loading'))return;
   const d=el.dataset;
   if(d.restart){S=init();render();return}
-  if(el.id==='skip'){const sc=document.getElementById('scrim'),pu=document.getElementById('push');sc.classList.add('show');pu.classList.add('show');return}
+  if(el.id==='skip'){const sc=document.getElementById('scrim'),pu=document.getElementById('push');sc.classList.add('show');pu.classList.add('show');try{navigator.vibrate&&navigator.vibrate([12,60,12])}catch(e){}return}
   if(el.id==='push'){S.screen='pick';render();return}
-  if(el.id==='toProduct'){S.coupon={key:S.pick};S.product=S.pick;S.screen='detail';render();return}
+  if(d.load){el.classList.add('loading');el.innerHTML='<span class="spin"></span>';setTimeout(()=>{if(d.load==='coupon'){S.cart=1;S.coupon={key:S.pick};S.product=S.pick}S.screen=d.load;render()},650);return}
   if(d.toast){toast(d.toast);return}
   if(d.go==='x-back'){toast('프로토타입은 이 상품에서 시작해요');return}
   if(d.concern){S.concern=d.concern;render();return}
-  if(d.method){S.method=d.method;render();return}
   if(d.store){S.store=d.store;render();return}
   if(d.pick){S.pick=d.pick;render();return}
   if(d.reason!==undefined){const i=+d.reason,k=S.reasons.indexOf(i);k<0?S.reasons.push(i):S.reasons.splice(k,1);render();return}
