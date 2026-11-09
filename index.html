@@ -257,6 +257,8 @@ button:active{opacity:.85}
 .cp{display:flex;gap:8px;align-items:baseline;margin-top:6px}.cp s{font-size:12.5px;color:var(--mute)}.cp b{font-size:16px;font-weight:800}
 .tot{margin:22px 0 0;border-top:8px solid var(--soft);padding-top:16px;display:grid;gap:10px;font-size:14px}
 .tot div{display:flex;justify-content:space-between}.tot dt{color:var(--sub)}.tot dd{margin:0;font-weight:700}.tot .m{color:#F23F3F}
+.sh{font-size:15px;font-weight:800;margin:26px 0 0}
+.sum2{margin:10px 0 0;display:grid;gap:12px;font-size:14px}.sum2 div{display:flex;gap:12px}.sum2 dt{width:44px;flex:none;color:var(--sub);font-weight:500}.sum2 dd{margin:0;font-weight:700;line-height:1.45}.sum2 dd span{font-weight:500;color:var(--sub)}
 .tot .all{border-top:1px solid var(--line);padding-top:12px;font-size:16px}.tot .all dt{color:var(--ink);font-weight:800}.tot .all dd{font-size:18px;font-weight:800}
 @media (prefers-reduced-motion:reduce){.rise,.ok.pop,.ticket.shine,.ticket.shine::after,.draw,.bdg.pop{animation:none}.draw{stroke-dashoffset:0}}
 </style>
@@ -331,11 +333,11 @@ function compare(){
   <div class="bar"><button class="btn dark" data-go="apply">샘플 2종 무료로 받기</button></div>`;
 }
 function apply(){
-  return sb+hdr('샘플 신청','compare')+`<div class="body"><div class="pad"><h1 class="h1" style="margin-top:0">어느 매장에서 받을까요?</h1><p class="lead">오늘드림 픽업 선반에서 받아요. 배송은 하지 않아요</p>
+  return sb+hdr('샘플 신청','compare')+`<div class="body"><div class="pad"><h1 class="h1" style="margin-top:0">어느 매장에서 받을까요?</h1><p class="lead">샘플은 매장 픽업 선반에서만 받을 수 있어요</p>
   <div class="near">${ic.pin}내 위치에서 가까운 순</div>
   <div class="stores" role="radiogroup" aria-label="매장 선택">${STORES.map(s=>`<button class="opt ${S.store===s.id?'on':''}" data-store="${s.id}" role="radio" aria-checked="${S.store===s.id}"><span class="rd"></span><span class="ot"><b>${s.n}<em>${s.d}</em></b><span>${s.s}</span></span></button>`).join('')}<p class="ex">매장 이름과 위치는 예시예요</p></div>
-  <dl class="sum"><dt>받는 샘플</dt><dd>${P.A.name} ${S.shadeA} · ${P.B.name} ${S.shadeB} · 1회용 퍼프 2개</dd><dt>수령 기간</dt><dd>신청한 날부터 7일 안에 매장에서</dd><dt>써본 뒤</dt><dd>1분 사용 설문으로 고르면 장바구니에 자동으로 담기고<br>2주 안에 쓰는 할인 쿠폰을 드려요</dd></dl>
-  <ul class="fine"><li>같은 고민은 1인 1회 받을 수 있어요</li><li>매장 진열대 QR로 들어와도 같은 화면이에요</li></ul></div></div>
+  <h3 class="sh">신청 내역</h3><dl class="sum2"><div><dt>샘플</dt><dd>${P.A.name} ${S.shadeA}<br>${P.B.name} ${S.shadeB}<br><span>+ 1회용 퍼프 2개</span></dd></div><div><dt>수령</dt><dd>${STORES.find(x=>x.id===S.store).n}<br><span>11/17(화)까지</span></dd></div><div><dt>혜택</dt><dd>설문 참여 시 15% 쿠폰</dd></div></dl>
+  <ul class="fine"><li>같은 고민은 1인 1회 신청할 수 있어요</li><li>쿠폰은 받은 날부터 2주 동안 쓸 수 있어요</li></ul></div></div>
   <div class="bar"><button class="btn dark" data-load="done">신청하기</button></div>`;
 }
 function done(){
@@ -388,7 +390,7 @@ function render(){
   app.innerHTML=VIEWS[S.screen]()+'<div class="scrim" id="scrim"></div><button class="push" id="push" aria-label="알림 열기"><span class="ico"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M5 8h12l-1 11H6z" fill="none" stroke="#C6E05A" stroke-width="2" stroke-linejoin="round"/><path d="M8 8a3 3 0 016 0" fill="none" stroke="#C6E05A" stroke-width="2"/></svg></span><span style="flex:1;min-width:0"><span class="a">트라이앤픽<span>지금</span></span><span class="b" style="display:block">이틀 써보신 두 쿠션, 1분 설문으로 골라주세요</span></span></button><div class="toast" id="toast" role="status"></div>';
   const b=app.querySelector('.body'),h=app.querySelector('.hdr');
   if(b){b.scrollTop=keep;b.addEventListener('scroll',()=>h&&h.classList.toggle('sc',b.scrollTop>4),{passive:true});
-    if(!same&&!RM){[...b.querySelectorAll('.pad > *, .hero > *, .opts > *, .stores > *, .tl > li')].slice(0,18).forEach((el,i)=>{el.classList.add('rise');el.style.animationDelay=(60+i*35)+'ms'})}}
+}
   drawQR();
   if(!same&&S.screen==='coupon'&&!S.flown){S.flown=true;flyToCart()}
   const idx=STEPS.findIndex(s=>s[0]===S.screen);
